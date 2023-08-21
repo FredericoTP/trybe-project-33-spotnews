@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from news.models import News
+from django.shortcuts import render, get_object_or_404, redirect
+from news.models import News, Categories
 from django.http import Http404
+from news.forms import CreateCategoriesModelForm
 
 
 # Create your views here.
@@ -17,3 +18,18 @@ def news_details(request, id):
         return render(request, "news_details.html", context)
     except Http404:
         return render(request, "404.html")
+
+
+def create_category(request):
+    form = CreateCategoriesModelForm()
+
+    if request.method == "POST":
+        form = CreateCategoriesModelForm(request.POST)
+
+        if form.is_valid():
+            Categories.objects.create(**form.cleaned_data)
+            return redirect("home-page")
+
+    context = {"form": form}
+
+    return render(request, "categories_form.html", context)
