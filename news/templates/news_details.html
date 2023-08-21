@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Página de Detalhes da Notícia
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="news-detail">
+  <h1 class="news-title">{{ news.title }}</h1>
+  <p class="news-content">{{ news.content }}</p>
+  {% for category in news.categories.all %}
+  <span class="news-categories">{{ category }}</span>
+  {% endfor %}
+  <span class="news-author">{{ news.author }}</span>
+  {% if news.image %}
+  <img src="{% static news.image.url %}" alt="Imagem sobre a notícia">
+  {% endif %}
+  <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
+</div>
+{% endblock %}
