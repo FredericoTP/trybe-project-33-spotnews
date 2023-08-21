@@ -17,7 +17,7 @@ Página Inicial
       <h2 class="news-title">{{ new.title }}</h2>
       <span class="news-date">{{ new.created_at|date:"d/m/Y" }}</span>
       {% if new.image %}
-      <img src="{% static new.image.url %}" alt="Imagem sobre a notícia">
+      <img class="news-image" src="{% static new.image.url %}" alt="Imagem sobre a notícia" />
       {% endif %}
     </a>
   </div>

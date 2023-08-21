@@ -12,7 +12,7 @@ Formulário para Nova Notícia
 {% block content %}
 <form class="news-form" method="post" action="{% url 'news-form' %}" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ form.as_div }}
+  {{ form.as_p }}
   <button type="submit">Salvar</button>
 </form>
 {% endblock %}

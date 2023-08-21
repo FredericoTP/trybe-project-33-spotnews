@@ -39,7 +39,7 @@ def create_news(request):
     form = CreateNewsModelForm()
 
     if request.method == "POST":
-        form = CreateNewsModelForm(request.POST)
+        form = CreateNewsModelForm(request.POST, request.FILES)
 
         if form.is_valid():
             news = form.save(commit=False)

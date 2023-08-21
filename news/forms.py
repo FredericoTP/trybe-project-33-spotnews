@@ -13,12 +13,6 @@ class CreateCategoriesModelForm(forms.ModelForm):
 
 
 class CreateNewsModelForm(forms.ModelForm):
-    categories = forms.MultipleChoiceField(
-        widget=forms.CheckboxSelectMultiple,
-        choices=Categories.objects.all().values_list("id", "name"),
-        label="Categoria",
-    )
-
     class Meta:
         model = News
         fields = "__all__"
@@ -33,3 +27,8 @@ class CreateNewsModelForm(forms.ModelForm):
             attrs={"type": "date"}
         )
         self.fields["image"].label = "URL da Imagem"
+        self.fields["categories"] = forms.MultipleChoiceField(
+            widget=forms.CheckboxSelectMultiple,
+            choices=Categories.objects.all().values_list("id", "name"),
+            label="Categoria",
+        )
