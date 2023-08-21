@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Página Inicial
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="news-container">
+  {% for new in news %}
+  <div class="news-card">
+    <h2 class="news-title">{{ new.title }}</h2>
+    <span class="news-date">{{ new.created_at|date:"d/m/Y" }}</span>
+    {% if new.image %}
+    <img src="{% static new.image.url %}" alt="Imagem sobre a notícia">
+    {% endif %}
+  </div>
+  {% empty %}
+  <h2>Não existem notícias cadastradas</h2>
+  {% endfor %}
+</div>
+{% endblock %}
